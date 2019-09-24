@@ -1,5 +1,8 @@
 {
   "name":"smilworld-server",
+  "scripts":{
+    "start":"node server.js"
+  },
   "dependencies":{
     "ws":"*"
   }
