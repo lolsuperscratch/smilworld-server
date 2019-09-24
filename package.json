@@ -1,0 +1,6 @@
+{
+  "name":"smilworld-server",
+  "dependencies":{
+    "ws":"*"
+  }
+}
