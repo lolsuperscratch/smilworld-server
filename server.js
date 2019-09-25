@@ -41,18 +41,18 @@ wss.on('connection', function connection(ws) {
     }
     if (parsed[0] == "chat") {
       // send a chat message from this client.
-      broadcast(ws,"chat|"+ws.username+"|"+parsed[1])
+      serverbroadcast("chat|"+ws.username+"|"+parsed[1])
     }
     if (parsed[0] == "create") {
       // create a new block.
       var generatedid = Math.floor(Math.random()*99999999)
-      block[generatedid] = {id:generatedid,x:parsed[1],y:parsed[2],type:parsed[3]}
-      broadcast(ws,"block|"+generatedid+"|"+parsed[1]+"|"+parsed[2]+"|"+parsed[3])
+      blocks[generatedid] = {id:generatedid,x:parsed[1],y:parsed[2],type:parsed[3]}
+      serverbroadcast("block|"+generatedid+"|"+parsed[1]+"|"+parsed[2]+"|"+parsed[3])
     }
     if (parsed[0] == "destroy") {
       // destroy a block
-      delete block[parsed[1]]
-      broadcast(ws,"destroy|"+parsed[1])
+      delete blocks[parsed[1]]
+      serverbroadcast("destroy|"+parsed[1])
     }
   })
   ws.on('close',function () {
